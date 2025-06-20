@@ -30,5 +30,6 @@ $routes->post('/kategoriproduk', 'KategoriProdukController::create', ['filter' =
 $routes->post('/kategoriproduk/edit/(:any)', 'KategoriProdukController::edit/$1', ['filter' => 'auth']);
 $routes->get('/kategoriproduk/delete/(:any)', 'KategoriProdukController::delete/$1', ['filter' => 'auth']);
 
+$routes->get('profile', 'Home::profile', ['filter' => 'auth']);
 $routes->get('/faq', 'FaqController::index', ['filter' => 'auth']);
 $routes->get('/redirect', 'RedirectController::index', ['filter' => 'auth']);
