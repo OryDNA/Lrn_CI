@@ -16,8 +16,6 @@ class Home extends BaseController
             helper('form');
             helper('number');
             $this->product = new ProductModel();
-            $this->transaction = new TransactionModel();
-            $this->transaction_detail = new TransactionDetailModel();
         }
 
     public function index(): string

@@ -33,3 +33,9 @@ $routes->get('/kategoriproduk/delete/(:any)', 'KategoriProdukController::delete/
 $routes->get('profile', 'Home::profile', ['filter' => 'auth']);
 $routes->get('/faq', 'FaqController::index', ['filter' => 'auth']);
 $routes->get('/redirect', 'RedirectController::index', ['filter' => 'auth']);
+$routes->get('checkout', 'TransaksiController::checkout', ['filter' => 'auth']);
+$routes->post('buy', 'TransaksiController::buy', ['filter' => 'auth']);
+
+
+$routes->get('get-location', 'TransaksiController::getLocation', ['filter' => 'auth']);
+$routes->get('get-cost', 'TransaksiController::getCost', ['filter' => 'auth']);
