@@ -15,7 +15,9 @@
     <button type="submit" title="Search"><i class="bi bi-search"></i></button>
   </form>
 </div><!-- End Search Bar -->
-
+ <li class="nav-item mx-auto" style="background-color: green; padding: 8px 16px; border-radius: 4px;">
+      <span style="color: yellow; font-weight: bold;">Diskon Hari ini RP.<?= number_format(session()->get('diskon'), 0, ',', '.'); ?> per item</span>
+    </li>
 <nav class="header-nav ms-auto">
   <ul class="d-flex align-items-center">
 

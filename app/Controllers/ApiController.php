@@ -2,56 +2,62 @@
 
 namespace App\Controllers;
 
+use App\Models\TransactionDetailModel;
+use App\Models\TransactionModel;
+use App\Models\UserModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
 
-use App\Models\UserModel;
-use App\Models\TransactionDetailModel;
-use App\Models\TransactionModel;
-
 class ApiController extends ResourceController
 {
-    protected $apiKey;
+    /**
+     * Return an array of resource objects, themselves in array format.
+     *
+     * @return ResponseInterface
+     */
+
+    protected $apikey;
     protected $user;
     protected $transaction;
-    protected $transaction_detail;
+    protected $transactionDetail;
 
     function __construct()
     {
-        $this->apiKey = env('API_KEY');
+        $this->apikey = env('API_KEY');
         $this->user = new UserModel();
         $this->transaction = new TransactionModel();
-        $this->transaction_detail = new TransactionDetailModel();
+        $this->transactionDetail = new TransactionDetailModel();
     }
     public function index()
-{
-    $data = [ 
-        'results' => [],
-        'status' => ["code" => 401, "description" => "Unauthorized"]
-    ];
+    {
+        $data = [ 
+            'results' => [],
+            'status' => ["code" => 401, "description" => "Unauthorized"]
+        ];
 
-    $headers = $this->request->headers(); 
+        $headers = $this->request->headers(); 
 
-    array_walk($headers, function (&$value, $key) {
-        $value = $value->getValue();
-    });
+        array_walk($headers, function (&$value, $key) {
+            $value = $value->getValue();
+        });
+        
 
-    if(array_key_exists("Key", $headers)){
-        if ($headers["Key"] == $this->apiKey) {
-            $penjualan = $this->transaction->findAll();
-            
-            foreach ($penjualan as &$pj) {
-                $pj['details'] = $this->transaction_detail->where('transaction_id', $pj['id'])->findAll();
+        if(array_key_exists("Key", $headers)){
+            if ($headers["Key"] == $this->apikey) {
+                $penjualan = $this->transaction->findAll();
+                
+                foreach ($penjualan as &$pj) {
+                    $pj['details'] = $this->transactionDetail->where('transaction_id', $pj['id'])->findAll();
+                }
+
+                $data['status'] = ["code" => 200, "description" => "OK"];
+                $data['results'] = $penjualan;
+
             }
+        } 
 
-            $data['status'] = ["code" => 200, "description" => "OK"];
-            $data['results'] = $penjualan;
-
-        }
-    } 
-
-    return $this->respond($data);
-}
+        return $this->respond($data);
+    }
 
     /**
      * Return the properties of a resource object.

@@ -16,22 +16,6 @@
                 <span>Keranjang</span>
             </a>
         </li><!-- End Keranjang Nav -->
-        <?php
-        if (session()->get('role') == 'admin') {
-        ?>
-            <li class="nav-item">
-                <a class="nav-link <?php echo (uri_string() == 'produk') ? "" : "collapsed" ?>" href="/produk">
-                    <i class="bi bi-receipt"></i>
-                    <span>Produk</span>
-                </a>
-            </li><!-- End Produk Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link <?php echo (uri_string() == 'kategori produk') ? "" : "collapsed" ?>" href="/kategoriproduk">
-                    <i class="bi bi-receipt"></i>
-                    <span>Kategori Produk</span>
-                </a>
-            </li><!-- End Produk Nav -->
 
             <li class="nav-item">
                 <a class="nav-link <?php echo (uri_string() == 'profile') ? "" : "collapsed" ?>" href="profile">
@@ -46,6 +30,29 @@
                 <span>F.A.Q</span>
             </a>
         </li><!-- End Keranjang Nav -->
+        <?php
+        if (session()->get('role') == 'admin') {
+        ?>
+            <li class="nav-item">
+                <a class="nav-link <?php echo (uri_string() == 'produk') ? "" : "collapsed" ?>" href="/produk">
+                    <i class="bi bi-receipt"></i>
+                    <span>Produk</span>
+                </a>
+            </li><!-- End Produk Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link <?php echo (uri_string() == 'diskon') ? "" : "collapsed" ?>" href="/diskon">
+                    <i class="bi bi-receipt"></i>
+                    <span>Diskon</span>
+                </a>
+            </li><!-- End Produk Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link <?php echo (uri_string() == 'kategori produk') ? "" : "collapsed" ?>" href="/kategoriproduk">
+                    <i class="bi bi-receipt"></i>
+                    <span>Kategori Produk</span>
+                </a>
+            </li><!-- End Produk Nav -->
         <?php
         }
         ?>
